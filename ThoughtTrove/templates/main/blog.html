@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Blog | {{title}}{% endblock title %}
+{% block content %}
+<style>
+  .card-img-top {
+    width: 100%;
+    height: 100%;
+  }
+  .content-ctnr {
+    margin-top: 300px;
+  }
+  .blog-content-header-container {
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/main">ThoughtTrove</a>
+      <div class="button-group">
+      <a type="button" class="btn text-white" href="/blogs/create">
+        Write a Blog
+      </a>
+      <a type="button" class="btn text-white" >
+        {{user.first_name}}
+      </a>
+      <a type="button" class="btn text-white" href="/accounts/logout">logout</a>
+    </div>
+    </div>
+  </nav>
+  {% for property in blog %}
+<div class="container mt-5 content-ctnr">
+    <div class="row">
+        <div class="col-md-8">
+            <!-- Blog Post -->
+            
+            <div class="card mb-4">
+               
+                <div class="card-body">
+                  <div class="blog-content-header-container">
+                    <h2 class="card-title">{{property.title}}</h2>
+                    {% if owned %}
+                    <a href="/blogs/delete/{{property.id}}" class="btn btn-danger">Delete</a>
+                    {% endif %}
+                  </div>
+                    <p class="card-text">{{property.intro_text}}</p>
+                    <p>Date Added: {{property.created_at}}</p>
+                    <hr>
+                    <h4>Author: {{author}}</h4>
+                    <p>{{property.content}}</p>
+                    <!-- Add more content here -->
+                </div>
+            </div>
+            
+        
+            
+
+          </div> 
+        <div class="col-md-4"> <img src="/media/{{property.blog_image}}" class="card-img-top" alt="Blog Featured Image"></div>
+    </div>
+</div>    
+{% endfor %}
+        {% endblock content %}

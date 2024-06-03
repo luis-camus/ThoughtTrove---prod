@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Write Blog{% endblock title %}
+{% block content %}
+<style>
+body {
+    background: linear-gradient(135deg, #f5f5f5, #e0f7fa);
+        background-size: cover;
+}
+.form-container {
+    margin-top: 5em;
+    max-width: 90vw;
+    width: 60vw;
+    padding: 2em;
+    background-color: white;
+    border-radius: 1em;
+}
+
+.write-blog-content-ctnr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+</style>
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/main">ThoughtTrove</a>
+      <div class="button-group">
+      <a type="button" class="btn text-white">
+        Write a Blog
+      </a>
+      <a type="button" class="btn text-white" >
+        {{user.first_name}}
+      </a>
+      <a type="button" class="btn text-white" href="/accounts/logout">logout</a>
+    </div>
+    </div>
+  </nav>
+  <div class="write-blog-content-ctnr">
+  <form action="" method="post" class="form-container" enctype="multipart/form-data">
+    <h2>Write Blog</h2>
+    {% csrf_token %}
+    {{form}}
+    <button type="submit" class="btn btn-primary mt-2">Submit</button>
+</form>
+</div>
+{% endblock content %}

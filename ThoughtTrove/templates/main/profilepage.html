@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% block title %}{{user.first_name}}{% endblock title %}
+{% block content %}
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #f5f5f5, #e0f7fa);
+        background-size: cover;
+        height: 40vh;
+        color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .blog-card {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+    .blog-card img {
+        max-width: 100%;
+        height: 425px;
+    }
+    .blog-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+    }
+    .blog-card p {
+        font-size: 0.875rem;
+        color: #777;
+    }
+    .container {
+        margin-top: 1em;
+    }
+    .blog-image {
+        width: 100%;
+        height: 20px;
+    }
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+    }
+</style>
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/main">ThoughtTrove</a>
+      <div class="button-group">
+      <a type="button" class="btn text-white" href="/blogs/create">
+        Write a Blog
+      </a>
+      <a type="button" class="btn text-white" >
+        {{user.first_name}}
+      </a>
+      <a type="button" class="btn text-white" href="/accounts/logout">logout</a>
+    </div>
+    </div>
+  </nav>
+  <div class="mt-5 hero-section">
+    <h1>User Name</h1>
+  </div>
+  <div>
+    <div class="container">
+        <div class="row">
+            {% for blog in blogs %}
+            <div class="col-md-4">
+                <div class="blog-card">
+                    <img src="media/{{blog.blog_image}}" alt="Blog 1" class="blog-image">
+                    <h3>{{blog.title}}</h3>
+                    <p>{{blog.intro_text}}</p>
+                    <div>
+                    <a href="blogs/{{blog.id}}" class="btn btn-primary">Read More</a>
+                    <a href="blogs/delete/{{blog.id}}" class="btn btn-danger">Delete</a>
+                </div>
+                </div>
+            </div>            
+            {% endfor %} 
+        </div>
+    </div>
+  </div>
+{% endblock content %}

@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% block title %}ThoughtTrove{% endblock title %}
+{% block content %}
+<style>
+    .blog-card {
+        border: 1px solid #ddd;
+        padding: 20px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+    }
+    .blog-card img {
+        max-width: 100%;
+        height: 425px;
+    }
+    .blog-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+    }
+    .blog-card p {
+        font-size: 0.875rem;
+        color: #777;
+    }
+
+    .container {
+        margin-top: 5em;
+    }
+
+    .button-group {
+        display: flex;
+    }
+
+    .blog-image {
+        width: 100%;
+        height: 20px;
+    }
+   
+</style>
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/main">ThoughtTrove</a>
+      <div class="button-group">
+      <a type="button" class="btn text-white" href="/blogs/create">
+        Write a Blog
+      </a>
+      <a type="button" class="btn text-white" href="/profile">
+        {{user.first_name}}
+      </a>
+      <a type="button" class="btn text-white" href="/accounts/logout">logout</a>
+    </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+        {% for blog in blogs %}
+        <div class="col-md-4">
+            <div class="blog-card">
+                <img src="media/{{blog.blog_image}}" alt="Blog 1" class="blog-image">
+                <h3>{{blog.title}}</h3>
+                <p>{{blog.intro_text}}</p>
+                <a href="blogs/{{blog.id}}" class="btn btn-primary">Read More</a>
+            </div>
+        </div> 
+        {% endfor %} 
+    </div>
+</div>
+{% endblock content %}
